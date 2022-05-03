@@ -29,15 +29,18 @@
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ activeMenu('mensajes/index') }}" href="{{ route('messages.index')}}">Mensajes</a>
+                </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle {{ activeMenu('contacto') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Imagenes
+                  <a class="nav-link dropdown-toggle {{ activeMenu('mensajes/create') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Contacto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Imagenes 1</a>
+                    <a class="dropdown-item" href="#">Imaegenes</a>
                     <a class="dropdown-item" href="#">Imagenes 2</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('contacto')}}">Contacto</a>
+                    <a class="dropdown-item" href="{{ route('messages.create')}}">Contacto</a>
                   </div>
                 </li>
               </ul>

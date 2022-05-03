@@ -9,7 +9,7 @@
             <h5 class="col-4 offset-4 p-3 mb-2 bg-light text-dark">{{ session('info') }}</h5>
             
         @else
-        <form method="POST" action="contactar" class="col-md-8  offset-md-2 col-lg-6 offset-lg-3 p-3 mb-2 bg-light text-dark">
+        <form method="POST" action="{{ route('messages.store') }}" class="col-md-8  offset-md-2 col-lg-6 offset-lg-3 p-3 mb-2 bg-light text-dark">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlInput1">Email address</label>
@@ -17,28 +17,28 @@
                 {!! $errors->first('email', '<div id="validation" style="color:red"">:message</div>') !!}
             </div>
             <div class="form-group">
-            <label for="exampleFormControlSelect1">Example select</label>
-            <select class="form-control" name="opciones" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="exampleFormControlSelect1">Ciudad de residencia</label>
+            <select class="form-control" name="ciudad" id="exampleFormControlSelect1">
+                <option>Chipiona</option>
+                <option>Jerez</option>
+                <option>Sanlucar</option>
+                <option>Chiclana</option>
+                <option>Rota</option>
             </select>
             </div>
             <div class="form-group">
-            <label for="exampleFormControlSelect2">Example multiple select</label>
-            <select multiple class="form-control" name="opcionesMultiples" id="exampleFormControlSelect2">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="exampleFormControlSelect2">Fruta favorita</label>
+            <select multiple class="form-control" name="fruta" id="exampleFormControlSelect2">
+                <option>Pera</option>
+                <option>Manzana</option>
+                <option>Melon</option>
+                <option>Sandia</option>
+                <option>Fresa</option>
             </select>
             </div>
             <div class="form-group">
             <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3">{{ old('texto') }}</textarea>
+            <textarea class="form-control" name="mensaje" id="exampleFormControlTextarea1" rows="3">{{ old('texto') }}</textarea>
             {!! $errors->first('texto', '<div id="validation" style="color:red"">:message</div>') !!}
             </div>
             <input type="submit" class="btn btn-secondary" value="Contactar">

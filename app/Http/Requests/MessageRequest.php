@@ -25,7 +25,7 @@ class MessageRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'texto' => 'required|min:5'
+            'mensaje' => 'required|min:5'
         ];
     }
 }

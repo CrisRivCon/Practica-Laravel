@@ -22,6 +22,7 @@ class PagesController extends Controller
     public function mensaje(\App\Http\Requests\MessageRequest $request)
     {
         $data = $request->all(); //devuelve un array y Laravel lo convierte en JSON
-        return redirect()->route('contacto')->with('info', 'Tu mensaje ha sido enviado.');
+        //return redirect()->route('contacto')->with('info', 'Tu mensaje ha sido enviado.');
+        return back()->with('info', 'Tu mensaje ha sido enviado.');//Se sustituye el redirect/route por el back()
     }
 };
