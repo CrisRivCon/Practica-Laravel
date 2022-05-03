@@ -6,11 +6,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>Practica</title>
 </head>
-<body>
-    <div class="container">
+<body class="d-flex flex-column h-100">
+  <header>
+    <?php function activeMenu($url){
+      return request()->is($url) ? 'active' : '';
+    } ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <!-- Image and text -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{route('index')}}">
             <img src="/docs/4.6/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             Practica Laravel
             </a>
@@ -20,21 +23,21 @@
           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Saludo</a>
+                  <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle {{ activeMenu('contacto') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                     Imagenes
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Imagenes 1</a>
                     <a class="dropdown-item" href="#">Imagenes 2</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Contacto</a>
+                    <a class="dropdown-item" href="{{ route('contacto')}}">Contacto</a>
                   </div>
                 </li>
               </ul>
@@ -43,8 +46,15 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
-          </nav>
-    </div>
+        </nav>
+      </header>
+      <div class="container text-center">
+      @yield('contenido')
+      </div>
+      <footer class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+        <a>Pie de pagina</a>
+      </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
