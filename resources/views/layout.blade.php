@@ -8,9 +8,11 @@
 </head>
 <body class="d-flex flex-column h-100">
   <header>
-    <?php function activeMenu($url){
+    @php
+    function activeMenu($url){
       return request()->is($url) ? 'active' : '';
-    } ?>
+    }  
+    @endphp
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <!-- Image and text -->
             <a class="navbar-brand" href="{{route('index')}}">
@@ -24,23 +26,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Home</a>
+                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Saludo</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('mensajes/index') }}" href="{{ route('messages.index')}}">Mensajes</a>
+                  <a class="nav-link {{ activeMenu('mensajes') }}" href="{{ route('mensajes.index')}}">Mensajes</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle {{ activeMenu('mensajes/create') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                     Contacto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Imaegenes</a>
-                    <a class="dropdown-item" href="#">Imagenes 2</a>
+                    <a class="dropdown-item" href="{{route('register')}}">Registro</a>
+                    <a class="dropdown-item" href="{{route('login')}}">Inicia Sesion</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('messages.create')}}">Contacto</a>
+                    <a class="dropdown-item" href="{{ route('mensajes.create')}}">Contacto</a>
                   </div>
                 </li>
               </ul>
@@ -49,6 +51,26 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
             </div>
+            @auth
+            <ul class="navbar-nav mr-auto navbar-right">
+              <li class="nav-item">
+                <a class="nav-link {{ activeMenu('logout') }}" href="{{ route('index')}}">Cerrar Sesion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Perfil</a>
+              </li>
+            </ul>
+            @endauth
+            @guest
+            <ul class="navbar-nav mr-auto navbar-right">
+              <li class="nav-item">
+                <a class="nav-link {{ activeMenu('login') }}" href="{{route('login')}}">Iniciar Sesion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ activeMenu('register') }}" href="{{route('register')}}">Registrarse</a>
+              </li>
+            </ul>
+            @endguest
         </nav>
       </header>
       <div class="container text-center">

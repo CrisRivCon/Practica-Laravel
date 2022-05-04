@@ -9,7 +9,7 @@
             <h5 class="col-4 offset-4 p-3 mb-2 bg-light text-dark">{{ session('info') }}</h5>
             
         @else
-        <form method="POST" action="{{ route('messages.store') }}" class="col-md-8  offset-md-2 col-lg-6 offset-lg-3 p-3 mb-2 bg-light text-dark">
+        <form method="POST" action="{{ route('mensajes.store') }}" class="col-md-8  offset-md-2 col-lg-6 offset-lg-3 p-3 mb-2 bg-light text-dark">
             @csrf
             <div class="form-group">
                 <label for="exampleFormControlInput1">Email address</label>

@@ -13,24 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', ['as'=>'index', function () {
-//     return view('index');
-// }]);
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('index');
+
 Route::get('/', ['as'=>'index', 'uses'=>'PagesController@home']);
 
-Route::get('contacto', ['as' => 'contacto', 'uses'=>'PagesController@contacto']);
+Route::get('saludo/{nombre?}', ['as'=>'saludo', 'uses'=>'PagesController@saludo'])->where('nombre', "[A-Za-z]+");
 
-Route::get('saludo/{nombre?}', ['as'=>'saludo', 'uses'=>'PagesController@saludo'])->where('nombre', "[A-Za-z]+"); //para filtrar con regExp
+Route::resource('mensajes', 'MessagesController');
 
-Route::post('contactar', 'PagesController@mensaje');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-// Route::get('paginaCris2', ['as'=> 'paginaModificable', function(){
-//     return "Pagina con nombre URL modificable";
-// }]); 
-
-//Route::resource('mensajes', 'MessagesController');
-Route::get('mensajes', ['as' => 'messages.index', 'uses'=>'MessagesController@index']);
-Route::get('mensajes/create', ['as' => 'messages.create', 'uses'=>'MessagesController@create']);
-Route::post('mensajes', ['as' => 'messages.store', 'uses'=>'MessagesController@store']);
-Route::get('mensajes/{id}', ['as' => 'messages.show', 'uses'=>'MessagesController@show']);
+require __DIR__.'/auth.php';

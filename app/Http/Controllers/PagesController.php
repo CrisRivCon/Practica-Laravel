@@ -11,18 +11,10 @@ class PagesController extends Controller
     {
         return view('index');
     }
-    public function contacto()
-    {
-        return view('contacto');
-    }
+
     public function saludo($nombre='Invitado')
     {
         return view('saludo', compact('nombre'));
     }
-    public function mensaje(\App\Http\Requests\MessageRequest $request)
-    {
-        $data = $request->all(); //devuelve un array y Laravel lo convierte en JSON
-        //return redirect()->route('contacto')->with('info', 'Tu mensaje ha sido enviado.');
-        return back()->with('info', 'Tu mensaje ha sido enviado.');//Se sustituye el redirect/route por el back()
-    }
+
 };

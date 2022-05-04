@@ -11,15 +11,34 @@
                  <th>Ciudad</th>
                  <th>Fruta</th>
                  <th>Mensaje</th>
+                 <th>Acciones</th>
              </tr>
          </thead>
          <tbody>
               @foreach ($messages as $message)
                   <tr>
-                      <td>{{ $message->email }}</td>
+                      <td>
+                          <a href=" {{ route('mensajes.show', $message->id) }}">
+                             {{ $message->email }}
+                        </a>
+                    </td>
                       <td>{{ $message->ciudad }}</td>
                       <td>{{ $message->fruta }}</td>
                       <td>{{ $message->mensaje }}</td>
+                      <td>
+                          <button class="btn btn-dark">
+                              <a href=" {{ route('mensajes.edit', $message->id)}} ">
+                                  Editar
+                              </a>
+                            </button>
+                            <form method="POST" class="d-inline" action="{{ route('mensajes.destroy', $message->id)}}">
+                                @csrf
+                                {{@method_field('DELETE')}}
+                                <button class="btn btn-dark">
+                                        Eliminar
+                                </button>
+                            </form>
+                      </td>
                   </tr>
               @endforeach
          </tbody>

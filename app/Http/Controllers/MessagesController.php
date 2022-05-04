@@ -17,7 +17,10 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        $messages = DB::table('messages')->get();
+        //$messages = DB::table('messages')->get();
+        $messages = Message::all();
+        //dd($messages);
+        //return $messages;
         return view('messages.index', compact('messages'));
     }
 
@@ -40,18 +43,21 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         //Guardar mensaje
-        //$message = Message::all();
+           //$message = Message::all();
         //return $request->all();
-        DB::table('messages')->insert([
-            "email" => $request->input('email'),
-            "ciudad" => $request->input('ciudad'),
-            "fruta" => $request->input('fruta'),
-            "mensaje" => $request->input('mensaje'),
-            "created_at" => Carbon::now(),
-            "updated_at" => Carbon::now()
-        ]);
+
+        //DB::table('messages')->insert([
+        //    "email" => $request->input('email'),
+        //    "ciudad" => $request->input('ciudad'),
+        //    "fruta" => $request->input('fruta'),
+        //    "mensaje" => $request->input('mensaje'),
+        //    "created_at" => Carbon::now(),
+        //    "updated_at" => Carbon::now()
+        //]);
+        Message::create($request->all());
+
         //Redireccionar
-        return redirect()->route('messages.index');
+        return redirect()->route('mensajes.index');
     }
 
     /**
@@ -62,7 +68,9 @@ class MessagesController extends Controller
      */
     public function show($id)
     {
-        $message = DB::table('messages')->where('id', $id)->first();
+        //$message = DB::table('messages')->where('id', $id)->first();
+        $message = Message::findOrFail($id);
+
         return view('messages.show', compact('message'));
     }
 
@@ -74,7 +82,9 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        //$message = DB::table('messages')->where('id', $id)->first();
+        return view ('messages.edit', compact('message'));
     }
 
     /**
@@ -86,7 +96,18 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //DB::table('messages')->where('id', $id)->update([
+        //    "email" => $request->input('email'),
+        //    "ciudad" => $request->input('ciudad'),
+        //    "fruta" => $request->input('fruta'),
+        //    "mensaje" => $request->input('mensaje'),
+        //    "updated_at" => Carbon::now(),
+        //]);
+        Message::findOrFail($id)->update($request->all());
+
+
+
+        return redirect()->route('mensajes.index');
     }
 
     /**
@@ -97,6 +118,9 @@ class MessagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //DB::table('messages')->where('id', $id)->delete();
+        Message::findOrFail($id)->delete();
+
+        return redirect()->route('mensajes.index');
     }
 }
