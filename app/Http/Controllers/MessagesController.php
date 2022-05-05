@@ -6,6 +6,7 @@ use App\Models\Message;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 class MessagesController extends Controller
@@ -54,9 +55,16 @@ class MessagesController extends Controller
         //    "created_at" => Carbon::now(),
         //    "updated_at" => Carbon::now()
         //]);
-        Message::create($request->all());
+        $message = Message::create($request->all());
+        //dd($message);
+        //dd($message->email);
+        Mail::send('emails.contact', ['msg'=>$message], function ($m) use ($message){
+
+            $m->to($message->email)->subject('Su mensaje ha sido recibido');
+        });
 
         //Redireccionar
+
         return redirect()->route('mensajes.index');
     }
 

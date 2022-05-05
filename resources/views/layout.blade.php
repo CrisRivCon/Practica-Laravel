@@ -11,7 +11,7 @@
     @php
     function activeMenu($url){
       return request()->is($url) ? 'active' : '';
-    }  
+    }
     @endphp
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <!-- Image and text -->
@@ -22,7 +22,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -31,6 +31,7 @@
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
                 </li>
+                  @auth
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('mensajes') }}" href="{{ route('mensajes.index')}}">Mensajes</a>
                 </li>
@@ -39,12 +40,13 @@
                     Contacto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{route('register')}}">Registro</a>
+                    <a class="dropdown-item" href="{{route('usuarios.index')}}">Usuarios</a>
                     <a class="dropdown-item" href="{{route('login')}}">Inicia Sesion</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('mensajes.create')}}">Contacto</a>
                   </div>
                 </li>
+                  @endauth
               </ul>
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -54,8 +56,13 @@
             @auth
             <ul class="navbar-nav mr-auto navbar-right">
               <li class="nav-item">
-                <a class="nav-link {{ activeMenu('logout') }}" href="{{ route('index')}}">Cerrar Sesion</a>
+                <a class="nav-link {{ activeMenu('logout') }}" href=""
+                onclick="event.preventDefault(); document.getElementById('form_logout').submit()"
+                >Cerrar Sesion</a>
               </li>
+                <form id="form_logout" method="POST" action="{{ route('logout')}}" style="display: none">
+                    @csrf
+                </form>
               <li class="nav-item">
                 <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Perfil</a>
               </li>

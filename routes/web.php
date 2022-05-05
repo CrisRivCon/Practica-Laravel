@@ -22,6 +22,7 @@ Route::get('/', ['as'=>'index', 'uses'=>'PagesController@home']);
 Route::get('saludo/{nombre?}', ['as'=>'saludo', 'uses'=>'PagesController@saludo'])->where('nombre', "[A-Za-z]+");
 
 Route::resource('mensajes', 'MessagesController');
+Route::resource('usuarios', 'UsersController');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
