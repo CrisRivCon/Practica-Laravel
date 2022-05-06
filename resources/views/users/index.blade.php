@@ -14,7 +14,7 @@
             @foreach ($users as $user)
                 <tr>
                     <td>
-                        <a href=" {{ route('mensajes.show', $user->id) }}">
+                        <a href=" {{ route('users.edit', $user->id) }}">
                             {{ $user->name }}
                         </a>
                     </td>

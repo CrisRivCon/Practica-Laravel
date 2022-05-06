@@ -55,11 +55,9 @@ class MessagesController extends Controller
         //    "created_at" => Carbon::now(),
         //    "updated_at" => Carbon::now()
         //]);
-        $message = Message::create($request->all());
-        //dd($message);
-        //dd($message->email);
-        Mail::send('emails.contact', ['msg'=>$message], function ($m) use ($message){
 
+        $message = Message::create($request->all());
+        Mail::send('emails.contact', ['msg'=>$message], function ($m) use ($message){
             $m->to($message->email)->subject('Su mensaje ha sido recibido');
         });
 

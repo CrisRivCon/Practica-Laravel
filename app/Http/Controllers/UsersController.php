@@ -15,6 +15,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
+        //dd($users);
         return view('users.index', compact('users'));
     }
 
@@ -47,7 +48,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        //$user = User::findOrFail($id);
+
+        //return view('users.show', compact('user'));
     }
 
     /**
@@ -58,7 +61,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        //$message = DB::table('messages')->where('id', $id)->first();
+        return view ('users.edit', compact('user'));
     }
 
     /**
