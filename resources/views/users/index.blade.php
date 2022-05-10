@@ -14,7 +14,7 @@
             @foreach ($users as $user)
                 <tr>
                     <td>
-                        <a href=" {{ route('users.edit', $user->id) }}">
+                        <a href=" {{ route('usuarios.edit', $user->id) }}">
                             {{ $user->name }}
                         </a>
                     </td>
@@ -26,7 +26,7 @@
                             Editar
                         </a>
                     </button>
-                    <form method="POST" class="d-inline" action="{{ route('users.destroy', $usario->id)}}">
+                    <form method="POST" class="d-inline" action="{{ route('usuarios.destroy', $usario->id)}}">
                         @csrf
                         {{@method_field('DELETE')}}
                         <button class="btn btn-dark">

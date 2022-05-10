@@ -23,7 +23,7 @@ Route::get('saludo/{nombre?}', ['as'=>'saludo', 'uses'=>'PagesController@saludo'
 
 Route::resource('mensajes', 'MessagesController');
 Route::resource('usuarios', 'UsersController');
-Route::get('usuario/editar/{id}', 'UsersController@edit');
+//Route::get('usuario/editar/{id}', ['UsersController@edit'])->name('edit');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

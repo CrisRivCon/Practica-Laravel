@@ -3,7 +3,7 @@
 @section('contenido')
 <div class="row">
     <h1 class="p-3 mt-2 bg-secondary text-white col-md-8  offset-md-2 col-lg-6 offset-lg-3">EDITAR MENSAJE</h1>
-</div>   
+</div>
     <div class="row text-center ">
         <form method="POST" action="{{ route('mensajes.update', $message->id) }}" class="col-md-8  offset-md-2 col-lg-6 offset-lg-3 p-3 mb-2 bg-light text-dark">
             {!! method_field('PUT') !!}
@@ -39,6 +39,6 @@
             {!! $errors->first('texto', '<div id="validation" style="color:red"">:message</div>') !!}
             </div>
             <input type="submit" class="btn btn-secondary" value="Guardar">
-        </form> 
-    </div> 
+        </form>
+    </div>
 @endsection

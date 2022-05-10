@@ -15,11 +15,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-           'name' => 'cristina',
-           'email' => 'cristinapruebas14@gmail.com',
-           'password' => Hash::make('cristina'),
-            'role_id'=> '1'
-        ]);
+        $users=[
+            array('cristina', 'cristinapruebas14@gmail.com', 'cristina','1'),
+            array('cris', 'cristinapruebas14@outlook.com', 'cristina', '2')
+        ];
+        foreach ($users as $user) {
+            DB::table('users')->insert([
+                'name' => $user[0],
+                'email' => $user[1],
+                'password' => Hash::make($user[2]),
+                'role_id' => $user[3]
+            ]);
+        };
     }
 }

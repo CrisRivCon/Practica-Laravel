@@ -35,6 +35,7 @@
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('mensajes') }}" href="{{ route('mensajes.index')}}">Mensajes</a>
                 </li>
+                      @if(auth()->user()->role_id === 1)
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle {{ activeMenu('mensajes/create') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                     Contacto
@@ -46,6 +47,7 @@
                     <a class="dropdown-item" href="{{ route('mensajes.create')}}">Contacto</a>
                   </div>
                 </li>
+                      @endif
                   @endauth
               </ul>
               <form class="form-inline my-2 my-lg-0">

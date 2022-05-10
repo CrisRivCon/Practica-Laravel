@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth'); //no mostrar a no autenticados
+        $this->middleware('roles');//no mostrar a el rol, añadir el middleware añadido al kernel por es alias
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,9 +53,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //$user = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        //return view('users.show', compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -75,7 +80,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::findOrFail($id)->update($request->all());
+
+
+
+        return redirect()->route('usuarios.index');
     }
 
     /**
