@@ -22,7 +22,7 @@
 
                 <input id="email" class="form-control" type="email" name="email" value="{{$user->email}}" required />
             </div>
-
+            <input type="submit" class="btn btn-secondary" value="Guardar">
         </form>
     </div>
 @endsection

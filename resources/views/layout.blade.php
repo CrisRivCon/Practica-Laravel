@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Saludo</a>
+                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
@@ -37,17 +37,17 @@
                 </li>
                       @if(auth()->user()->role_id === 1)
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle {{ activeMenu('mensajes/create') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Contacto
+                  <a class="nav-link dropdown-toggle {{ activeMenu('usuarios') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Perfil
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('usuarios.index')}}">Usuarios</a>
-                    <a class="dropdown-item" href="{{route('login')}}">Inicia Sesion</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('mensajes.create')}}">Contacto</a>
                   </div>
                 </li>
                       @endif
+                      <li class="nav-item">
+                          <a class="nav-link {{ activeMenu('mensajes/create') }}" href="{{ route('mensajes.create')}}">Contacto</a>
+                      </li>
                   @endauth
               </ul>
               <form class="form-inline my-2 my-lg-0">
@@ -65,9 +65,6 @@
                 <form id="form_logout" method="POST" action="{{ route('logout')}}" style="display: none">
                     @csrf
                 </form>
-              <li class="nav-item">
-                <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Perfil</a>
-              </li>
             </ul>
             @endauth
             @guest
