@@ -20,6 +20,7 @@
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->rol->rol }}</td>
+                    <td><img src="{{asset('/storage/avatars/'.$user->foto)}}"></td>
                 {{--<td>
                     <button class="btn btn-dark">
                         <a href=" {{ route('user.edit', $user->id)}} ">

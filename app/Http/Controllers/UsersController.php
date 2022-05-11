@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -78,10 +80,26 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        User::findOrFail($id)->update($request->all());
 
+        $user = User::findOrFail($id);
+        //dd($request->file('foto'));
+        //dd($request->file('foto'));
+
+        if ($request->file('foto'))
+        {
+            $nombreImg = Str::random(10) . time();
+            $extension = $request->file('foto')->clientExtension();
+            $nombreCompletoImg = $nombreImg.".".$extension;
+
+            $request->file('foto')->storeAs('public/avatars', $nombreCompletoImg); //storage app
+            $user->foto = $nombreCompletoImg;
+            $user->save();
+        }
+        $user->update($request->only('name', 'email'));
+
+        //User::findOrFail($id)->update($request->all());
 
 
         return redirect()->route('usuarios.index');

@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             array('cristina', 'cristinapruebas14@gmail.com', 'cristina','1'),
             array('cris', 'cristinapruebas14@outlook.com', 'cristina', '2')
         ];
-        foreach ($users as $user) {
+        foreach ($users as $user)
+        {
             DB::table('users')->insert([
                 'name' => $user[0],
                 'email' => $user[1],

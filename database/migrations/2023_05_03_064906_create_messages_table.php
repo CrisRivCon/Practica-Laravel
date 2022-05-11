@@ -15,11 +15,16 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('email');
-            $table->string('ciudad', 15);
-            $table->string('fruta', 20);
             $table->string('mensaje', 200);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -24,6 +24,12 @@ class MessagesController extends Controller
         //return $messages;
         return view('messages.index', compact('messages'));
     }
+    public function message($userId)
+    {
+        $messages = Message::where('user_id', $userId)->get();
+
+        return view('messages.userMessage', compact('messages'));
+    }
 
     /**
      * Show the form for creating a new resource.

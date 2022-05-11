@@ -8,8 +8,6 @@
          <thead>
              <tr>
                  <th>Email</th>
-                 <th>Ciudad</th>
-                 <th>Fruta</th>
                  <th>Mensaje</th>
                  <th>Acciones</th>
              </tr>
@@ -22,8 +20,6 @@
                              {{ $message->email }}
                         </a>
                     </td>
-                      <td>{{ $message->ciudad }}</td>
-                      <td>{{ $message->fruta }}</td>
                       <td>{{ $message->mensaje }}</td>
                       <td>
                           <button class="btn btn-dark">

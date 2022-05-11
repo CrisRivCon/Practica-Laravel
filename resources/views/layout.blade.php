@@ -26,27 +26,29 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index')}}">Home</a>
+                  <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris')}}">Saludo</a>
+                  <a class="nav-link {{ activeMenu('saludo/*') }}" href="{{ route('saludo', 'Cris') }}">Saludo</a>
                 </li>
                   @auth
                 <li class="nav-item">
-                  <a class="nav-link {{ activeMenu('mensajes') }}" href="{{ route('mensajes.index')}}">Mensajes</a>
+                  <a class="nav-link {{ activeMenu('mensajes') }}" href="{{ route('mensajes.userMessage', auth()->user()->id) }}">Mensajes</a>
                 </li>
                       @if(auth()->user()->role_id === 1)
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle {{ activeMenu('usuarios') }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Perfil
+                    Panel Admin
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{route('usuarios.index')}}">Usuarios</a>
+                    <a class="dropdown-item" href="{{ route('usuarios.index') }}">Todos los Usuarios</a>
+                      <a class="dropdown-item" href="{{ route('mensajes.index') }}">Todos los Mensajes</a>
                   </div>
+
                 </li>
                       @endif
                       <li class="nav-item">
-                          <a class="nav-link {{ activeMenu('mensajes/create') }}" href="{{ route('mensajes.create')}}">Contacto</a>
+                          <a class="nav-link {{ activeMenu('mensajes/create') }}" href="{{ route('mensajes.create') }}">Contacto</a>
                       </li>
                   @endauth
               </ul>

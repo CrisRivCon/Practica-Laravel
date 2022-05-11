@@ -8,12 +8,14 @@
             <tbody>
                 <tr>
                     <th>Email</th>
-                    <td>{{ $message->email }}</td>
-                </tr>
-                <tr>
                     <th>Mensaje</th>
+                </tr>
+                @foreach($messages as $message)
+                <tr>
+                    <td>{{ $message->email }}</td>
                     <td>{{ $message->mensaje }}</td>
                 </tr>
+            @endforeach
          </tbody>
     </table>
 </div>

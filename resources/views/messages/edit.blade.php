@@ -13,7 +13,7 @@
                 <input type="text" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="{{ $message->email }}">
                 {!! $errors->first('email', '<div id="validation" style="color:red"">:message</div>') !!}
             </div>
-            <div class="form-group">
+            {{--<div class="form-group">
             <label for="exampleFormControlSelect1">Ciudad de residencia</label>
             <select class="form-control" name="ciudad" id="exampleFormControlSelect1">
                 <option <?php if ($message->ciudad == 'Chipiona'): ?>selected<?php endif; ?>>Chipiona</option>
@@ -32,7 +32,7 @@
                 <option>Sandia</option>
                 <option>Fresa</option>
             </select>
-            </div>
+            </div>--}}
             <div class="form-group">
             <label for="exampleFormControlTextarea1">Example textarea</label>
             <textarea class="form-control" name="mensaje" id="exampleFormControlTextarea1" rows="3">{{ $message->mensaje }}</textarea>

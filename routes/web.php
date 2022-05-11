@@ -25,6 +25,8 @@ Route::resource('mensajes', 'MessagesController');
 Route::resource('usuarios', 'UsersController');
 //Route::get('usuario/editar/{id}', ['UsersController@edit'])->name('edit');
 
+Route::get('usuario/mensajes/{id}', ['uses'=>'MessagesController@message'])->name('mensajes.userMessage');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
