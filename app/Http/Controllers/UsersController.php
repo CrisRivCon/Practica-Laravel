@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UsersController extends Controller
@@ -84,11 +85,13 @@ class UsersController extends Controller
     {
 
         $user = User::findOrFail($id);
-        //dd($request->file('foto'));
-        //dd($request->file('foto'));
 
         if ($request->file('foto'))
         {
+                if(Storage::disk('public')->exists(('avatars/'.$user->foto)))
+                {
+                    Storage::disk('public')->delete('avatars/' . $user->foto);
+                }
             $nombreImg = Str::random(10) . time();
             $extension = $request->file('foto')->clientExtension();
             $nombreCompletoImg = $nombreImg.".".$extension;

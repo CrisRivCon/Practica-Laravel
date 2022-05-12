@@ -1,13 +1,15 @@
 @extends('layout')
 @section('contenido')
     <div class="container">
-        <h2>users</h2>
+        <h2>Usuarios</h2>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Rol</th>
+                <th>Foto</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -20,21 +22,25 @@
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->rol->rol }}</td>
-                    <td><img src="{{asset('/storage/avatars/'.$user->foto)}}"></td>
-                {{--<td>
-                    <button class="btn btn-dark">
-                        <a href=" {{ route('user.edit', $user->id)}} ">
-                            Editar
-                        </a>
-                    </button>
-                    <form method="POST" class="d-inline" action="{{ route('usuarios.destroy', $usario->id)}}">
-                        @csrf
-                        {{@method_field('DELETE')}}
-                        <button class="btn btn-dark">
-                            Eliminar
-                        </button>
-                    </form>
-                </td>--}}
+                    <td><img class="img" src="{{asset('/storage/avatars/'.$user->foto)}}"></td>
+                    <td class="row">
+                        <div class="col-6">
+                            <button class="btn btn-dark">
+                            <a href=" {{ route('usuarios.edit', $user->id)}} ">
+                                Editar
+                            </a>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <form method="POST" class="d-inline " action="{{ route('usuarios.destroy', $user->id)}}">
+                                @csrf
+                                {{@method_field('DELETE')}}
+                                <button class="btn btn-dark">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                </td>
                 </tr>
             @endforeach
             </tbody>

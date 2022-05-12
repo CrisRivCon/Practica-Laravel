@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        .img{
+            width: 100px;
+        }
+    </style>
     <title>Practica</title>
 </head>
 <body class="d-flex flex-column h-100">
   <header>
     @php
-    function activeMenu($url){
+    function activeMenu($url)
+    {
       return request()->is($url) ? 'active' : '';
     }
     @endphp
@@ -23,7 +29,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                   <a class="nav-link {{ activeMenu('/') }}" href="{{ route('index') }}">Home</a>
@@ -41,24 +47,18 @@
                     Panel Admin
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('usuarios.index') }}">Todos los Usuarios</a>
-                      <a class="dropdown-item" href="{{ route('mensajes.index') }}">Todos los Mensajes</a>
+                        <a class="dropdown-item" href="{{ route('usuarios.index') }}">Todos los Usuarios</a>
+                        <a class="dropdown-item" href="{{ route('mensajes.index') }}">Todos los Mensajes</a>
                   </div>
-
                 </li>
                       @endif
-                      <li class="nav-item">
-                          <a class="nav-link {{ activeMenu('mensajes/create') }}" href="{{ route('mensajes.create') }}">Contacto</a>
-                      </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ activeMenu('mensajes/create') }}" href="{{ route('mensajes.create') }}">Contacto</a>
+                </li>
                   @endauth
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
+            </ul>
+            <ul class="navbar-nav">
             @auth
-            <ul class="navbar-nav mr-auto navbar-right">
               <li class="nav-item">
                 <a class="nav-link {{ activeMenu('logout') }}" href=""
                 onclick="event.preventDefault(); document.getElementById('form_logout').submit()"
@@ -67,18 +67,17 @@
                 <form id="form_logout" method="POST" action="{{ route('logout')}}" style="display: none">
                     @csrf
                 </form>
-            </ul>
             @endauth
             @guest
-            <ul class="navbar-nav mr-auto navbar-right">
               <li class="nav-item">
                 <a class="nav-link {{ activeMenu('login') }}" href="{{route('login')}}">Iniciar Sesion</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {{ activeMenu('register') }}" href="{{route('register')}}">Registrarse</a>
               </li>
-            </ul>
             @endguest
+            </ul>
+            </div>
         </nav>
       </header>
       <div class="container text-center">

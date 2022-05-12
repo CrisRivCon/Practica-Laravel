@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'name'=>'required|min:3|max:15|string|alpha',
             'email'=>'email',
             'role_id'=>'integer',
-            'foto'=>'image|max:100000'
+            'foto'=>'image|max:5000'
         ];
     }
 }

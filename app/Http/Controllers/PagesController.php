@@ -12,9 +12,11 @@ class PagesController extends Controller
         return view('index');
     }
 
-    public function saludo($nombre='Invitado')
+    public function saludo($nombre='Invitado', $apellido='Apellido')
     {
         return view('saludo', compact('nombre'));
+        //return view('saludo' )->with('nombre', $nombre);
+        //return view('saludo', ['nombre'=> $nombre,'apellido'=> $apellido] );
     }
 
 };
